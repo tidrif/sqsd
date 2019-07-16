@@ -95,10 +95,11 @@ if (!mergedParams.webHook) {
 logger.init( mergedParams.verbose );
 logger.info('SQSD v' + pkg.version);
 new sqsd(mergedParams).start()
-    .then(()=>{
+    .then((res)=>{
+        logger.info( {res:res}, "Response OK");
         process.exit(0);
     })
-    .catch( err=> {
-        logger.error( {err:err}, "Unexpected error")
+    .catch((err)=> {
+        logger.error( {err:err}, "Unexpected error");
         process.exit(1);
     })
